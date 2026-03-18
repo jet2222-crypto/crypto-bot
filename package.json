@@ -1,0 +1,40 @@
+{
+  "name": "crypto-bot",
+  "version": "1.0.0",
+  "description": "Paper trading crypto bot scaffold with Node.js and TypeScript",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
+    "bot": "node dist/app.js",
+    "web": "ts-node src/web/server.ts",
+    "dev:web": "ts-node src/web/dev.ts",
+    "build": "tsc",
+    "start": "concurrently \"npm run bot\" \"npm run web\"",
+    "test": "vitest run",
+    "review:journal": "ts-node src/tools/reviewJournal.ts",
+    "export-telemetry": "ts-node src/tools/reviewPack.ts",
+    "review-pack": "ts-node src/tools/reviewPack.ts",
+    "probe:cryptocom": "ts-node src/tools/probeCryptoCom.ts",
+    "analysis:missed": "ts-node src/tools/missedOpportunity.ts"
+  },
+  "keywords": [
+    "crypto",
+    "trading",
+    "paper-trading",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "undici": "^7.22.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}
