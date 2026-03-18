@@ -176,12 +176,13 @@ export async function runCryptoComReadOnlyProbe(input: {
   clientFactory?: () => CryptoComReadOnlyClientLike;
 }): Promise<CryptoComProbeDiagnostics> {
   const diagnostics = emptyCryptoComProbeDiagnostics();
+  const authClient = input.clientFactory?.();
   const baseProbe = await runCryptoComAuthProbe({
     apiKey: input.apiKey,
     apiSecret: input.apiSecret,
-    clientFactory: input.clientFactory
+    clientFactory: authClient
       ? () => ({
-          getBalances: input.clientFactory!().getBalances
+          getBalances: (...args) => authClient.getBalances(...args)
         })
       : undefined
   });
